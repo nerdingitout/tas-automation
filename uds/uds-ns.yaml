@@ -1,0 +1,7 @@
+# 1 - create ibm-common-services project
+kind: Namespace
+apiVersion: v1
+metadata:
+  name: ibm-common-services
+  labels:
+    name: ibm-common-services
