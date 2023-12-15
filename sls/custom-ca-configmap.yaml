@@ -7,4 +7,4 @@ data:
   setup.sh: |
     #!/bin/bash
     # Your setup commands using oc
-    oc get secret ca-key-pair -o jsonpath='{.data.tls\.crt}' | base64 --decode
+    oc get secret ca-key-pair -o jsonpath='{.data.tls\.crt}' -n mongodb | base64 --decode
