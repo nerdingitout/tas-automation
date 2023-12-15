@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: custom-ca
+  namespace: mongodb
+data:
+  setup.sh: |
+    #!/bin/bash
+    # Your setup commands using oc
+    oc get secret ca-key-pair -o jsonpath='{.data.tls\.crt}' | base64 --decode
