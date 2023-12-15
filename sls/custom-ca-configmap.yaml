@@ -1,8 +1,0 @@
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: custom-ca
-  namespace: mongodb
-data:
-  ca.crt: |
-    $(oc get secret ca-key-pair -o jsonpath='{.data.tls\.crt}' -n mongodb | base64 --decode)
