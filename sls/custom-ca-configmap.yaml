@@ -4,7 +4,5 @@ metadata:
   name: custom-ca
   namespace: mongodb
 data:
-  setup.sh: |
-    #!/bin/bash
-    # Your setup commands using oc
-    oc get secret ca-key-pair -o jsonpath='{.data.tls\.crt}' -n mongodb | base64 --decode
+  ca.crt: |
+    $(oc get secret ca-key-pair -o jsonpath='{.data.tls\.crt}' -n mongodb | base64 --decode)
