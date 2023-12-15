@@ -1,0 +1,15 @@
+apiVersion: external-secrets.io/v1beta1
+kind: ExternalSecret
+metadata:
+  name: my-user-password
+  namespace: mongodb
+spec:
+  refreshInterval: 1h
+  secretStoreRef:
+    name: ibm-cluster-secret-store
+    kind: ClusterSecretStore
+  data:
+  - secretKey: password
+    remoteRef:
+      key: kv/mongodb-password
+      property: 'password'
