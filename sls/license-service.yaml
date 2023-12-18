@@ -57,7 +57,7 @@ metadata:
   namespace: ibm-sls
 spec:
   serviceAccountName: sls-service-account
-  initContainers:
+  containers:
   - name: crd-creator-container
     image: openshift/origin-cli:latest
     command:
