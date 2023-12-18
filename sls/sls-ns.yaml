@@ -1,0 +1,6 @@
+kind: Namespace
+apiVersion: v1
+metadata:
+  name: ibm-sls
+  labels:
+    name: ibm-sls
