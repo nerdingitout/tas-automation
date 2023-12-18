@@ -34,6 +34,7 @@ spec:
     - "/bin/sh"
     - "-c"
     - |
+      MONGO_CRT=$(oc get configmap custom-ca -n mongodb -o jsonpath='{.data.ca\.crt}')
       cat <<EOF |oc apply -f -
       apiVersion: sls.ibm.com/v1
       kind: LicenseService
@@ -59,7 +60,7 @@ spec:
           secretName: sls-mongo-credentials
           certificates:
           - alias: mongoca
-            crt: $(oc get configmap custom-ca -n mongodb -o jsonpath='{.data.ca\.crt}')
+            crt: ${MONGO_CRT}
         rlks:
           storage:
             class: ocs-storagecluster-cephfs
