@@ -39,5 +39,5 @@ spec:
     - "-c"
     - |
       SECRET_VALUE=$(oc get secret ca-key-pair -n mongodb -o jsonpath='{.data.tls\.crt}' | base64 --decode)
-      oc create configmap custom-ca -n mongodb --from-literal=ca.crt="${SECRET_VALUE}"
+      oc create configmap custom-ca -n mongodb --from-literal=ca\.crt="${SECRET_VALUE}"
   restartPolicy: Never
