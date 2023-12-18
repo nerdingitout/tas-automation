@@ -12,6 +12,7 @@ metadata:
     service.binding/username: path={.metadata.name}-{.spec.users[0].db}-{.spec.users[0].name},objectType=Secret,sourceKey=username
   creationTimestamp: null
   name: mongodbcommunity.mongodbcommunity.mongodb.com
+  namespace: mongodb
 spec:
   group: mongodbcommunity.mongodb.com
   names:
