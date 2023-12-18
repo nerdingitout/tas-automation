@@ -1,0 +1,43 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  namespace: mongodb
+  name: configmap-creator-role
+rules:
+- apiGroups: [""]
+  resources: ["configmaps"]
+  verbs: ["create"]
+- apiGroups: [""]
+  resources: ["secrets"]
+  verbs: ["get"]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  namespace: mongodb
+  name: configmap-creator-rolebinding
+subjects:
+- kind: ServiceAccount
+  name: default
+  namespace: mongodb
+roleRef:
+  kind: Role
+  name: configmap-creator-role
+  apiGroup: rbac.authorization.k8s.io
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: configmap-creator-pod
+  namespace: mongodb
+spec:
+  containers:
+  - name: configmap-creator-container
+    image: openshift/origin-cli:latest
+    command: ["/bin/sh"]
+    args:
+    - "-c"
+    - |
+      SECRET_VALUE=$(oc get secret ca-key-pair -n mongodb -o jsonpath='{.data.tls\.crt}' | base64 --decode)
+      oc create configmap custom-ca -n mongodb --from-literal=ca.crt="${SECRET_VALUE}"
+  restartPolicy: Never
