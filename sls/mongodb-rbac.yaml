@@ -2,6 +2,7 @@ apiVersion: rbac.authorization.k8s.io/v1
 kind: Role
 metadata:
   name: mongodb-kubernetes-operator
+  namespace: mongodb
 rules:
 - apiGroups:
   - ""
@@ -48,6 +49,7 @@ kind: RoleBinding
 apiVersion: rbac.authorization.k8s.io/v1
 metadata:
   name: mongodb-kubernetes-operator
+  namespace: mongodb
 subjects:
 - kind: ServiceAccount
   name: mongodb-kubernetes-operator
@@ -60,6 +62,7 @@ kind: RoleBinding
 apiVersion: rbac.authorization.k8s.io/v1
 metadata:
   name: mongodb-database
+  namespace: mongodb
 subjects:
 - kind: ServiceAccount
   name: mongodb-database
@@ -72,6 +75,7 @@ kind: Role
 apiVersion: rbac.authorization.k8s.io/v1
 metadata:
   name: mongodb-database
+  namespace: mongodb
 rules:
   - apiGroups:
       - ""
@@ -92,8 +96,10 @@ apiVersion: v1
 kind: ServiceAccount
 metadata:
   name: mongodb-kubernetes-operator
+  namespace: mongodb
 ---
 apiVersion: v1
 kind: ServiceAccount
 metadata:
   name: mongodb-database
+  namespace: mongodb
