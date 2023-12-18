@@ -89,7 +89,7 @@ spec:
           secretName: sls-mongo-credentials
           certificates:
           - alias: mongoca
-            crt: $(oc get configmap ca-key-pair -n mongodb -o jsonpath='{.data.ca\.crt}')
+            crt: $(oc get configmap custom-ca -n mongodb -o jsonpath='{.data.ca\.crt}')
         rlks:
           storage:
             class: ocs-storagecluster-cephfs
