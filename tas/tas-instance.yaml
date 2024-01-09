@@ -5,7 +5,7 @@ metadata:
   namespace: ibm-tas
 spec:
   env:
-    size: <SIZE>
+    size: large
     use: <USE>
   license:
     accept: true
@@ -27,18 +27,19 @@ spec:
     sls_host: sls.ibm-sls.svc.cluster.local
     sls_secret: 'tas-sls-secret'
   uds:
-    uds_host: event-api-service.ibm-bas.svc:8443 # must change host name?
+    uds_host: event-api-service.ibm-bas.svc:8443
     uds_secret: 'tas-uds-secret'
   storage:
     log:
-      class: <STORAGE_CLASS>
+      class: ocs-storagecluster-cephfs
       size: 30
       mode: 'ReadWriteOnce'
     config: 
-      class: <STORAGE_CLASS>
+      class: ocs-storagecluster-cephfs
       size: 1
       mode: 'ReadWriteOnce'
     userfiles: 
-      class: <STORAGE_CLASS>
+      class: ocs-storagecluster-cephfs
       size: 50
-      mode: 'Rea
+      mode: 'ReadWriteOnce'
+  version: 1.0.0
