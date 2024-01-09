@@ -1,0 +1,44 @@
+apiVersion: tririga.ibm.com/v1
+kind: Tririga
+metadata:
+  name: my-tririga
+  namespace: ibm-tas
+spec:
+  env:
+    size: <SIZE>
+    use: <USE>
+  license:
+    accept: true
+  db:
+    db_secret: 'tas-db-secret'
+    dbtype: db2
+    dbdnsname: <DB_HOST>
+    dbport: <DB_PORT>
+    dbname: <DB_NAME>
+    sid: <SID>
+  jvm:
+    javamin: 4096
+    javamax: 8192
+  rt:
+    contextpath: tririga
+    domain: default
+    routes_crt: ''
+  sls:
+    sls_host: sls.ibm-sls.svc.cluster.local
+    sls_secret: 'tas-sls-secret'
+  uds:
+    uds_host: event-api-service.ibm-bas.svc:8443 # must change host name?
+    uds_secret: 'tas-uds-secret'
+  storage:
+    log:
+      class: <STORAGE_CLASS>
+      size: 30
+      mode: 'ReadWriteOnce'
+    config: 
+      class: <STORAGE_CLASS>
+      size: 1
+      mode: 'ReadWriteOnce'
+    userfiles: 
+      class: <STORAGE_CLASS>
+      size: 50
+      mode: 'Rea
