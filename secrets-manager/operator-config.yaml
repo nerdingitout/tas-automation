@@ -2,7 +2,7 @@ kind: OperatorConfig
 apiVersion: operator.external-secrets.io/v1alpha1
 metadata:
   name: cluster
-  namespace: external-secrets-operator
+  namespace: default
 spec:
   affinity: {}
   certController:
